@@ -80,63 +80,16 @@ function taskRenderDel() {
   });
 }
 
-// const timeElement = document.getElementById("time");
-// const currentTime = new Date().toLocaleTimeString();
-// const btnNewTask = document.getElementById("btn-new");
+const timeElement = document.getElementById("time");
+const currentTime = new Date().toLocaleTimeString();
 
-// const tasks = [];
+timeElement.textContent = `Current Time: ${currentTime}`;
 
-// timeElement.textContent = `Current Time: ${currentTime}`;
-
-// chrome.action.setBadgeText(
-//   {
-//     text: "TIME",
-//   },
-//   () => {
-//     console.log("Badge Text Succesful");
-//   }
-// );
-
-// btnNewTask.addEventListener("click", () => addTask());
-
-// function renderTask(tasksLength) {
-//   const taskRow = document.createElement("div");
-
-//   const text = document.createElement("input");
-//   text.type = "text";
-//   text.addEventListener("change", () => {
-//     tasks[tasksLength] = text.value;
-//   });
-
-//   const btnDelete = document.createElement("input");
-//   btnDelete.type = "button";
-//   btnDelete.value = "x";
-//   btnDelete.addEventListener("click", () => {
-//     deleteTask(tasksLength);
-//   });
-
-//   taskRow.appendChild(text);
-//   taskRow.appendChild(btnDelete);
-
-//   const taskContainer = document.getElementById("task-container");
-//   taskContainer.appendChild(taskRow);
-// }
-
-// function addTask() {
-//   const tasksLength = tasks.length;
-//   tasks.push("");
-//   renderTask(tasksLength);
-// }
-
-// function deleteTask() {
-//   tasks.splice(tasksLength, 1);
-//   renderTask();
-// }
-
-// function renderTasks() {
-//   const taskContainer = document.getElementById("task-container");
-//   taskContainer.textContent = "";
-//   tasks.forEach((taskText, tasksLength) => {
-//     renderTask(tasksLength);
-//   });
-// }
+chrome.action.setBadgeText(
+  {
+    text: "TIME",
+  },
+  () => {
+    console.log("Badge Text Succesful");
+  }
+);

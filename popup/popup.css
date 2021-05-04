@@ -1,13 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:wght@300&display=swap');
+
 body {
   width: 400px;
   height: 400px;
   text-align: center;
+  background-color: whitesmoke;
 }
 
-h1 {
-  color: rgba(231, 66, 0, 0.938);
+.headers {
+  color: white;
+  background-color: indianred;
+  padding: 6px;
+  font-family: 'Montserrat'
 }
 
 #task-container {
   padding-top: 10px;
 }
+
+#btn-start, #btn-new, #time {
+  margin-top: 20px;
+}
+
+
