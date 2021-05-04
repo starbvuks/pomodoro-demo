@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Poppins:wght@400;700&display=swap');
 
 body {
   width: 400px;
@@ -11,7 +11,12 @@ body {
   color: white;
   background-color: indianred;
   padding: 6px;
-  font-family: 'Montserrat'
+  font-family: 'Montserrat';
+}
+
+#head-text {
+  font-family: "Montserrat";
+  font-weight: 600;
 }
 
 #task-container {
@@ -22,4 +27,12 @@ body {
   margin-top: 20px;
 }
 
+#time {
+  font-family: 'Poppins';
+  font-weight: 400;
+}
 
+.btn {
+  margin-bottom: 4px;
+  margin-left: 4px;
+}

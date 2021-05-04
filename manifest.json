@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Pomodoro Timer",
     "version": "1.0.0",
-    "description": "Beta",
+    "description": "Under Costruction",
     "permissions": ["storage"],
     "icons": {
         "16": "icon.png",
@@ -23,3 +23,4 @@
         "service_worker": "background.js"
     }
 }
+

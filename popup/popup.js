@@ -1,27 +1,16 @@
 // Array to hold tasks
 let tasks = [];
 
-const btnStartTimer = document.getElementById("btn-start");
-btnStartTimer.addEventListener("click", () => {
-  chrome.storage.local.set({
-    isRunning: true,
-  });
-});
-
-// Get New Task button from document, when clicked call function.
-const btnNewTask = document.getElementById("btn-new");
-btnNewTask.addEventListener("click", () => addTask());
-
-chrome.storage.sync.get(["tasks"], (res) => {
-  tasks = res.tasks ? res.tasks : [];
-  taskRenderDel();
-});
-
+// Saves any task related values
 function saveTask() {
   chrome.storage.sync.set({
     tasks,
   });
 }
+
+// Get New Task button from document, when clicked call function.
+const btnNewTask = document.getElementById("btn-new");
+btnNewTask.addEventListener("click", () => addTask());
 
 function taskRender(taskNum) {
   const taskRow = document.createElement("div");
@@ -32,6 +21,7 @@ function taskRender(taskNum) {
   text.value = tasks[taskNum];
   text.addEventListener("change", () => {
     tasks[taskNum] = text.value;
+    console.log(tasks);
     saveTask();
   });
 
@@ -39,6 +29,7 @@ function taskRender(taskNum) {
   const btnDelete = document.createElement("input");
   btnDelete.type = "button";
   btnDelete.value = "X";
+  btnDelete.className = "btn btn-outline-secondary btn-sm";
   btnDelete.addEventListener("click", () => {
     deleteTask(taskNum);
   });
@@ -65,13 +56,14 @@ function addTask() {
 
 // Function to delete tasks
 function deleteTask(taskNum) {
-  // Splice 1 element from taskNum array
+  // Splice 1 element from taskNum position in array
   tasks.splice(taskNum, 1);
   // Render by calling deletion render function
   taskRenderDel(taskNum);
   saveTask();
 }
 
+// Re-Render tasks after deletion
 function taskRenderDel() {
   const taskContainer = document.getElementById("task-container");
   taskContainer.textContent = "";
@@ -80,16 +72,32 @@ function taskRenderDel() {
   });
 }
 
+// Get tasks from storage
+// ternery operator to either assign FOUND TASK or EMPTY ARRAY
+chrome.storage.sync.get(["tasks"], (result) => {
+  tasks = result.tasks ? result.tasks : [];
+  taskRenderDel();
+});
+
 const timeElement = document.getElementById("time");
-const currentTime = new Date().toLocaleTimeString();
+// Render time every second
+function renderTime() {
+  const currentTime = new Date().toLocaleTimeString();
+  timeElement.textContent = `Current Time: ${currentTime}`;
+}
 
-timeElement.textContent = `Current Time: ${currentTime}`;
+renderTime();
 
-chrome.action.setBadgeText(
-  {
-    text: "TIME",
-  },
-  () => {
-    console.log("Badge Text Succesful");
-  }
-);
+// Set badge when activated
+setInterval(renderTime, 1000);
+chrome.action.setBadgeText({
+  text: "TIME",
+});
+
+// To recognize timer is running on click
+const btnStartTimer = document.getElementById("btn-start");
+btnStartTimer.addEventListener("click", () => {
+  chrome.storage.local.set({
+    isRunning: true,
+  });
+});
