@@ -1,26 +1,25 @@
 {
-    "manifest_version": 3,
-    "name": "Pomodoro Timer",
-    "version": "1.0.0",
-    "description": "Under Costruction",
-    "permissions": ["storage"],
-    "icons": {
-        "16": "icon.png",
-        "48": "icon.png",
-        "128": "icon.png"
+  "manifest_version": 3,
+  "name": "Pomodoro Timer",
+  "version": "1.0.0",
+  "description": "Under Costruction",
+  "permissions": ["storage", "alarms", "notifications"],
+  "icons": {
+    "16": "iconfi.png",
+    "48": "iconfi.png",
+    "128": "iconfi.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "iconfi.png",
+      "24": "iconfi.png",
+      "32": "iconfi.png"
     },
-    "action": {
-        "default_icon": {
-            "16": "icon.png",
-            "24": "icon.png",
-            "32": "icon.png"            
-        },
     "default_title": "TIMER EXTENSION",
-    "default_popup": "popup/popup.html"        
-    },
-    "options_page": "options/options.html",
-    "background": {
-        "service_worker": "background.js"
-    }
+    "default_popup": "popup/popup.html"
+  },
+  "options_page": "options/options.html",
+  "background": {
+    "service_worker": "background.js"
+  }
 }
-

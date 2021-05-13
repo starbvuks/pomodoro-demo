@@ -85,19 +85,70 @@ function renderTime() {
   const currentTime = new Date().toLocaleTimeString();
   timeElement.textContent = `Current Time: ${currentTime}`;
 }
-
 renderTime();
-
-// Set badge when activated
 setInterval(renderTime, 1000);
-chrome.action.setBadgeText({
-  text: "TIME",
-});
+// Set badge when activated
+// chrome.action.setBadgeText({
+//   text: "TIME",
+// });
 
-// To recognize timer is running on click
-const btnStartTimer = document.getElementById("btn-start");
-btnStartTimer.addEventListener("click", () => {
-  chrome.storage.local.set({
-    isRunning: true,
+// Timer Secion
+
+// Assign start button
+const btnStart = document.getElementById("btn-start");
+
+// On start button click
+btnStart.addEventListener("click", () => {
+  chrome.storage.local.get(["isActive"], (result) => {
+    // Set result after clicking button
+    chrome.storage.local.set(
+      {
+        isActive: !result.isActive,
+      },
+      () => {
+        // If active/inactive change text content of button
+        btnStart.textContent = result.isActive ? "Pause Timer" : "Start Timer";
+      }
+    );
   });
 });
+
+// Assign reset button
+const btnReset = document.getElementById("btn-reset");
+
+// On clicking reset button
+btnReset.addEventListener("click", () => {
+  // Set timer to 0 when clicked
+  chrome.storage.local.set(
+    {
+      timer: 0,
+      isActive: false,
+    },
+    () => {
+      // Reset start button
+      btnStart.textContent = "Start Timer";
+    }
+  );
+});
+
+// assign time to timer
+const time = document.getElementById("timer");
+
+// Update timer
+function updateTimer() {
+  //  Get timer from storage
+  chrome.storage.local.get(["timer"], (result) => {
+    // incriment timer in minutes, if in single digits add 0 in front
+    const minutes = `${25 - Math.ceil(result.timer / 60)}`.padStart(2, "0");
+    // Set seconds to 0
+    let seconds = "00";
+    // Set seconds value while running
+    if (result.timer % 60 != 0) {
+      `${(seconds = 60 - (result.timer % 60))}`.padStart(2, "0");
+    }
+    // Put current time value into timer
+    time.textContent = `${minutes}:${seconds}`;
+  });
+}
+
+setInterval(updateTimer, 1000);

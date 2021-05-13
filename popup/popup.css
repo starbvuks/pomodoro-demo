@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Poppins:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Poppins:wght@400;700&display=swap");
 
 body {
   width: 400px;
@@ -11,7 +11,7 @@ body {
   color: white;
   background-color: indianred;
   padding: 6px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
 }
 
 #head-text {
@@ -23,16 +23,24 @@ body {
   padding-top: 10px;
 }
 
-#btn-start, #btn-new, #time {
+#btn-start,
+#btn-new,
+#btn-reset,
+#time {
   margin-top: 20px;
 }
 
 #time {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-weight: 400;
+  font-size: 17px;
 }
 
 .btn {
   margin-bottom: 4px;
   margin-left: 4px;
+}
+
+#timer {
+  font-weight: 300;
 }
