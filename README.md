@@ -24,7 +24,6 @@ Every action made is rendered once every second to make sure the timer is consta
 
 ##### *To finish everything off, every action is saved in Chrome's storage so the data is always saved and up to date whether the browser is opened, closed or in the background.*
 
-# Finally..<br> Thank you, This was cs50!
 ## *- Sarvag Kalari*
 
 
