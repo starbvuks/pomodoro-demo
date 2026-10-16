@@ -10,6 +10,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     chrome.storage.local.get(["timer", "isActive"], (result) => {
       if (result.isActive) {
         let timer = result.timer + 1;
+        let isActive = result.isActive;
         if (timer === 60 * 25) {
           // Make sure 25 minutes has passed and notify user
           this.registration.showNotification("Pomodoro Timer", {
@@ -21,6 +22,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
         }
         chrome.storage.local.set({
           timer,
+          isActive,
         });
       }
     });
@@ -30,7 +32,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 // Set timer number and state based on data in storage
 chrome.storage.local.get(["timer", "isActive"], (result) => {
   chrome.storage.local.set({
-    timer: "timer" in result ? result.isActive : 0,
+    timer: "timer" in result ? result.timer : 0,
     isActive: "isActive" in result ? result.isActive : false,
   });
 });
