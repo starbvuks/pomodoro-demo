@@ -15,7 +15,13 @@ A small popup combines a 25-minute countdown, start/pause/reset controls and an 
 
 Learning prototype. The source has been reviewed for this presentation; it has not been verified as a reliable timer on current Chrome.
 
-The background code currently restores the timer from `isActive` instead of its stored numeric value, and the completion path does not persist `isActive: false`. Those are concrete maintenance tasks before calling this a dependable timer.
+The worker restores saved elapsed seconds and persists a paused state when a session finishes. Run the controlled state tests with Node.js 18 or later:
+
+```sh
+node --test tests/background.test.cjs
+```
+
+These execute the background script against simulated storage, alarms and notifications. They cover active and paused restarts, reset state and completion; they do not verify Chrome's alarm timing, service-worker lifecycle or notification delivery.
 
 ### try the original
 
